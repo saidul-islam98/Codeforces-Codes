@@ -7,11 +7,11 @@ int main(){
     cin>>t;
 
     while(t--){
-        long long int a,b,c,d;
-        cin>>a>>b>>c;
+        long long int a,b,x,mn;
+        cin>>a>>b;
 
-        cout<<a+b+c-1<<'\n';
+        x=(a^(a&b))+(b^(a&b));
+        cout<<x<<'\n';
     }
-
     return 0;
 }
