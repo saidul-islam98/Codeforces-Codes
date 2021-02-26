@@ -3,41 +3,33 @@
 using namespace std;
 
 int main(){
-    int cnt=0, lt=0, n=2;
+    long long int n,m,sum=0;
+    cin>>n>>m;
 
-    string ns="";
-    string ms="";
-
-    getline(cin, ns);
-    getline(cin, ms);
-
-    for(int i=0;i<ms.length();i++){
-        if(ms[i]!=' '){
-            lt++;
-        }
+    vector<pair<long long int,long long int>> v;
+    for(int i=1;i<=n;i++){
+        long long int a;
+        cin>>a;
+        sum+=a;
+        v.push_back(make_pair(i,sum));
     }
 
-    for(int i=0;i<ms.length();i++){
-        if(ms[i]==' '){
-            continue;
-        }
-        for(int j=0;j<ns.length();j++){
-            if(ns[j]==' '){
-                continue;
+    int o=0;
+    while(m--){
+        long long int x;
+        cin>>x;
+        for(int i=o;i<n;i++){
+            if(x<=v[i].second && i==0){
+                cout<<v[i].first<<' '<<x<<'\n';
+                o=i;
+                break;
             }
-            else if(ms[i]==ns[j]){
-                ns[j]='#';
-                cnt++;
+            else if(x<=v[i].second && i>0){
+                o=i;
+                cout<<v[i].first<<' '<<(x-v[i-1].second)<<'\n';
                 break;
             }
         }
-    }
-
-    if(cnt==lt){
-        cout<<"YES";
-    }
-    else{
-        cout<<"NO";
     }
     return 0;
 }
